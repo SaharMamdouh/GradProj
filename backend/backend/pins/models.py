@@ -29,8 +29,8 @@ class Pin(models.Model):
     creator = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.PROTECT, null=True)
     # react is a list of people so it should be reactees or reacted_on_by
     reactees = models.ManyToManyField(AUTH_USER_MODEL, related_name="reacted_on")
-    topics = models.ManyToManyField('Topic', related_name='pins')
-    saved_by = models.ManyToManyField(AUTH_USER_MODEL, through="Save", related_name="saved_pins")
+    topics = models.ManyToManyField('Topic', related_name='pins',blank=True)
+    # saved_by = models.ManyToManyField(AUTH_USER_MODEL, through="Save", related_name="saved_pins")
     seen_by = models.ManyToManyField(AUTH_USER_MODEL, through="History", related_name="seen_pins")
 
     def __str__(self):
@@ -66,7 +66,7 @@ class Save(models.Model):
     saved_at = models.DateField(auto_now_add=True)
 
     class Meta:
-        ordering=['saved_at']
+        ordering = ['saved_at']
 
 # # same thing here an intermedite table is done through a through ~kataya
 class History(models.Model):

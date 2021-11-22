@@ -1,0 +1,1 @@
+S_KEY = 'django-insecure-6(8ygqjh+4un(bur!o7@9^@1(wtpivzi@zi-&q%sppj(fwe=xe'

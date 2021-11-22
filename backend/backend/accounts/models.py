@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from pins.models import Topic
+from pins.models import Topic, Pin , Save
 
 
 class User(AbstractUser):
@@ -15,7 +15,8 @@ class User(AbstractUser):
     bio = models.TextField(null=True, blank=True)
     # add interset as many to many field
     # circular import
-    interest = models.ManyToManyField(Topic)
+    interest = models.ManyToManyField(Topic ,blank=True)
+    saved_img = models.ManyToManyField(Pin, through= Save, related_name="saved_pins")
 
     # first issue
     following = models.ManyToManyField(
